@@ -1,0 +1,177 @@
+.header {
+  height: 130px;
+  width: 100%;
+  text-align: center;
+}
+
+.buy-content {
+  background-color: $main-color;
+  height: 100%;
+  width: 100%;
+
+  &__main {
+    background-color: #fff;
+    height: 700px;
+    width: 800px;
+    margin: 0 auto;
+
+    &__title{
+      width: 800px;
+      height: 80px;
+      font-size: 20px;
+      text-align: center;
+      line-height: 80px;
+      font-weight: bold;
+      background-color: $main-blue;
+      margin: 0 auto 30px;
+
+    }
+
+    &__item {
+      width: 800px;
+      height: 170px;
+      display: flex;
+      justify-content: center;
+
+      .buy-image {
+        padding-right: 20px;
+
+      }
+      .buy-details {
+        height: 100px;
+        width: 300px;
+
+        &__item-name {
+          padding-top: 30px;
+          font-size: 16px;
+          font-weight: bold;
+          color: $font_title;
+
+          p.buy-price {
+            padding-top: 10px;
+          }
+        }
+      }
+    }
+
+    &__price-table {
+      width: 700px;
+      height: 60px;
+      border-bottom: solid 1px $main-blue;
+      line-height: 70px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+
+      &__left {
+        width: 180px;
+        font-size: 20px;
+        font-weight: bold;
+        color: $font_title;
+        
+      }
+      &__right {
+        font-size: 25px;
+        font-weight: bold;
+        color: $font_title;
+      }
+    }
+    &__user-info {
+      height: 270px;
+      width: 700px;
+      display: flex;
+      margin: 0 auto;
+
+      &__inner {
+        height: 50px;
+        width: 400px;
+        text-align: center;
+        line-height: 50px;
+        color: $font_title;
+
+        .inner-credit {
+          height: 200px;
+          width: 300px;
+          border: solid 2px $main-blue;
+          padding-left: 50px;
+          border-radius: 20px;
+          margin: 0 auto;
+
+          &__brand {
+            height: 50px;
+            width: 250px;
+          }
+          &__number {
+            height: 50px;
+            width: 250px;
+            color: $font_color;
+            font-weight: bold;
+            line-height: 50px;
+          }
+          &__expiration {
+            height: 30px;
+            width: 30px;
+
+            &__title {
+              height: 25px;
+              width: 250px;
+              color: $font_color;
+            }
+
+            &__date {
+              height: 25px;
+              width: 250px;
+              color: $font_color;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+      &__adress {
+        &__inner {
+          height: 50px;
+          width: 300px;
+          text-align: center;
+          line-height: 50px;
+          color: $font_title;
+        }
+        .adress-info {
+          height: 200px;
+          width: 250px;
+          padding-left: 60px;
+          margin: 20px auto 0;
+          color: $font_title;
+          font-weight: bold;
+          
+
+          &__name {
+            padding-top: 30px;
+            font-size: 20px;
+            color: $font_title;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+    &__submit {
+      height: 80px;
+      width: 250px;
+      margin: 0 auto;
+
+
+      .buy-button {
+        height: 60px;
+        width: 200px;
+        background-color: lightseagreen;
+        text-align: center;
+        margin-left: 50px;
+        border-radius: 30px;
+        border-style: none;
+        text-decoration: none;
+        color: #fff;
+        cursor: pointer;
+
+      }
+    }
+  }
+}

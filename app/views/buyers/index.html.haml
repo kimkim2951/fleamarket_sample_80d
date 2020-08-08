@@ -1,0 +1,85 @@
+.header
+  .header__logo
+    =image_tag("logo.png", size: "220x70")
+    
+.buy-content
+  .buy-content__main
+    .buy-content__main__title
+      購入内容の確認
+
+    .buy-content__main__item
+      .buy-image
+
+        -# 商品画像を反映させる。
+        -# = image_tag "#{@items.item_imgs[0].url}", size: '200x150', class: 'buy-image__detail'
+      .buy-details
+        .buy-details__item-name
+          %span 商品名:
+          Railsの参考書
+          -# = @items.name
+          %p.buy-price
+
+            -# 通過フォーマットの記載
+            -# = number_to_currency(@items.price,format: "%u%n",unit:"¥",precision: 0)
+            -# %span.shopping-free (税込)送料込み
+
+      .buy-content__main__price-table
+        .buy-content__main__price-table__left
+          お支払い金額
+        .buy-content__main__price-table__right
+          = number_to_currency(@items.price,format: "%u%n",unit:"¥",precision: 0)
+          %span.shopping-free (税込)送料込み
+          
+      .buy-content__main__user-info
+        .buy-content__main__user-info__inner
+          %h3 お支払い方法
+          .inner-credit
+            .inner-credit__brand
+              %figure
+                -# クレカの画像とブランド名を表示させる。
+                -# = image_tag ("card/#{@card_src}"), width: '60', height: '50', alt: @card_brand, id: "card_image"
+            .inner-credit__number
+              1111 2222 3333 4444
+              -# = "**** **** **** " + @default_card_information.last4
+            .inner-credit__expiration
+              .inner-credit__expiration__title
+                有効期限
+              .inner-credit__expiration__date
+                9 / 20
+                
+              -# Payjpで作成したクレジット情報を持ってくる。
+              -# .inner-credit__expiration__date
+              -#   = @クレジット月 + " / " + @クレジット年
+
+        .buy-content__main__user-info__adress
+          .buy-content__main__user-info__adress__inner
+            %h3 配送先
+          .adress-info
+            住所 100-0005
+            %p
+              東京都
+              %br/
+              千代田区丸の内
+              %br/
+              ３-3-1
+              %br/
+              新東京ビル4F
+
+            -# どのuserが送ったかのidから情報を反映させる
+            -# = "住所 #{@send_id.post_code}"
+            -# %br
+            -# = @send_id.prefecture_code
+            -# = @send_id.city
+            -# = @send_id.house_number
+            -# = @send_id.building_name
+            
+            .adress-info__name
+              氏名
+              田中
+              太郎 様
+
+              -# どのuserが送ったかのidから情報を反映させる
+              -# = @send_id.destination_family_name
+              -# = "#{@send_id.destination_first_name} 様"
+      .buy-content__main__submit
+        = f.submit '購入する', class: 'buy-button'
