@@ -4,11 +4,10 @@ $(document).ready(function(){
       var html = `<option value="${category.id}" data-category="${category.id}">${category.name}</option>`;
       return html;
     }
-
-    // 親が変更されたら子カテゴリーを変更させる。
+    // 子カテゴリーを表示させる。
     function appendChildrenBox(insertHTML){
       var childSelectHtml = '';
-      childSelectHtml = `<div class='exhibitionPage__main__contents__detail__category__choose__added' id= 'children_wrapper'>
+      childSelectHtml = `<div class='exhibitionPage__main__contents__detail__category__choose__added' id= 'child_category'>
                           <div class='exhibitionPage__main__contents__detail__category__choose1'>
                             <select class="exhibitionPage__main__contents__detail__category__choose--select" id="child_category" name="item[category_id]">
                               <option value="---" data-category="---">---</option>
@@ -16,8 +15,20 @@ $(document).ready(function(){
                             </select>
                           </div>
                         </div>`;
-      $('.exhibitionPage__main__contents__detail__category__choose1').append(childSelectHtml);
-
+      $('.exhibitionPage__main__contents__detail__category__choose').append(childSelectHtml);
+    }
+    // 孫カテゴリーを表示させる。
+    function appendGrandchildrenBox(insertHTML){
+      var grandchildSelectHtml = '';
+      grandchildSelectHtml = `<div class='exhibitionPage__main__contents__detail__category__choose__added' id= 'grandchild_category'>
+                                <div class='exhibitionPage__main__contents__detail__category__choose2'>
+                                  <select class="exhibitionPage__main__contents__detail__category__choose__box--select" id="grandchild_category" name="item[category_id]">
+                                    <option value="---" data-category="---">---</option>
+                                    ${insertHTML}
+                                  </select>
+                                </div>
+                              </div>`;
+      $('.exhibitionPage__main__contents__detail__category__choose').append(grandchildSelectHtml);
     }
     // 親カテゴリーを選択した後にイベント発火させる。
     console.log($('#parent_category'));
@@ -35,8 +46,8 @@ $(document).ready(function(){
         .done(function(children){         
           // 親カテゴリー削除された時、子・孫カテゴリーを削除する。
           console.log(children)
-          $('#children_wrapper').remove(); 
-          $('#grandchildren_wrapper').remove();
+          $('#child_category').remove(); 
+          $('#grandchild_category').remove();
 
           var insertHTML = '';
           children.forEach(function(child){
@@ -46,13 +57,13 @@ $(document).ready(function(){
         })
         // エラー警告
         .fail(function(){
-          $('#children_wrapper').remove();
-          $('#grandchildren_wrapper').remove(); 
+          $('#child_category').remove();
+          $('#grandchild_category').remove(); 
           alert('カテゴリーを選択してください');
         })
       }else{
-        $('#children_wrapper').remove(); 
-        $('#grandchildren_wrapper').remove();
+        $('#child_category').remove(); 
+        $('#grandchild_category').remove();
       }
     });
 
@@ -68,7 +79,7 @@ $(document).ready(function(){
         .done(function(grandchildren){
           if (grandchildren.length != 0) {
             // 子カテゴリーが変更された時、孫カテゴリーを削除する。
-            $('#grandchildren_wrapper').remove(); 
+            $('#grandchild_category').remove(); 
             var insertHTML = '';
             grandchildren.forEach(function(grandchild){
               insertHTML += appendOption(grandchild);
@@ -78,11 +89,11 @@ $(document).ready(function(){
         })
         // エラー警告
         .fail(function(){
-          $('#grandchildren_wrapper').remove(); 
+          $('#grandchild_category').remove(); 
           alert('カテゴリーを選択してください');
         })
       }else{
-        $('#grandchildren_wrapper').remove(); 
+        $('#grandchild_category').remove(); 
       }
     });
   });
