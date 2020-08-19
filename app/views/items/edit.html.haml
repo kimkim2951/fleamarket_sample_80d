@@ -82,9 +82,17 @@
                 必須
             .item-detail__inner__box
               .item-detail__inner__box__select
-                = f.collection_select :category_id, Category.where(ancestry: nil), :id, :name, {prompt: '---'}, {id: 'parent_category'}
-                .exhibitionPage__main__contents__detail__category__choose
-    
+                = f.collection_select :category_id,Category.where(ancestry: nil), :id, :name,{prompt: '---', selected: @item.category.parent.parent_id}, {id: 'parent_category'}
+                .exhibitionPage__main__contents__detail__category__choose1
+            .item-detail__inner__box
+              .item-detail__inner__box__select
+                = f.collection_select :category_id,@item.category.parent.parent.children, :id, :name,{prompt: '---', selected: @item.category.parent_id }, {id: 'child_category'}
+                .exhibitionPage__main__contents__detail__category__choose2
+            .item-detail__inner__box
+              .item-detail__inner__box__select
+                = f.collection_select :category_id,@item.category.parent.children, :id, :name,{prompt: '---', selected: @item.category_id}, {id: 'grandchild_category'}
+                
+
         .item-detail
           .item-detail__inner
             .item-detail__inner__name
