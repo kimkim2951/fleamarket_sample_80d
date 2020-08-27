@@ -4,7 +4,7 @@
 - メルカリクローンのフリーマーケットサイトです。
 - 
 - 作成期間 2020/8/4 ~ 2020/8/27
- <a>![top_page](https://user-images.githubusercontent.com/67991805/90978959-75a2b100-e58c-11ea-9e60-b07cd9f63878.gif)</a>
+ <a>![top_page](https://user-images.githubusercontent.com/67991805/91381190-bbe46280-e861-11ea-962c-6d6f920fdad8.gif)</a>
 
 ## :paperclip: 主な使用言語
 <a><img src="https://user-images.githubusercontent.com/39142850/71774533-1ddf1780-2fb4-11ea-8560-753bed352838.png" width="70px;" /></a> <!-- rubyのロゴ -->
