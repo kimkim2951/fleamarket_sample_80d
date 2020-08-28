@@ -1,5 +1,3 @@
-// _header.scss
-
 *{
   box-sizing: border-box;
 }
@@ -38,7 +36,6 @@ a{
       &__search-box{
         margin-left: auto;
         width: 100%;
-        // display: flex;
         form{
           width: 100%;
           margin-bottom: 5px;
@@ -77,11 +74,7 @@ a{
           }
         }   
       }
-      // &__left ul{
-      //   position: relative;
-      //   display: flex;
-      //   margin-right: auto;
-      // }
+      
       &__right{
         position: relative;
         margin-left: auto;

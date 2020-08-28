@@ -1,13 +1,13 @@
 class ApplicationController < ActionController::Base
 
   before_action :basic_auth, if: :production?
-  # before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   private
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:nick_name, :birth_day])
+    #registrations_controllerのcreateの引数に定義されている(sign_up_params) :sign_upをsign_inに変えて定義できる。記述をしないと(sign_up_params)は定義されていない事になる。
   end
 
   def basic_auth
