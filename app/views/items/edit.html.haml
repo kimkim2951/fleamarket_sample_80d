@@ -17,7 +17,7 @@
                 %li
                   = message
     
-      = f.hidden_field :trading_status, value: "販売中"
+      = f.hidden_field :sale_status, value: "販売中"
 
       .upload-box
         .upload-box__head
@@ -39,13 +39,7 @@
               %br/
               %span.js-remove 削除
           - if image.object.persisted?
-            = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
-          -# - if @item.persisted?
-          -#   %label
-          -#     .js-file_group{"data-index": "#{@item.item_imgs.count}"}
-          -#       = icon("fas", "camera fa-lg" )
-          -#       = file_field_tag :src, name: "item[item_imgs_attributes][#{@item.item_imgs.count}][src]", class: 'js-file'
-          -#       .js-remove 削除
+            = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'##削除のボタン（ボタンにはなってないけどね）
                 
       %hr.content-sale--hr
       .content-sale__main__box__form

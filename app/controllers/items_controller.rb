@@ -24,6 +24,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path
     else
+      @item.item_imgs.new
       @grandchild = @item.category
       @child = @grandchild.parent
       @parent = @child.parent

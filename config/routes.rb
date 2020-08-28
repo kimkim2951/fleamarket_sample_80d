@@ -9,8 +9,6 @@ Rails.application.routes.draw do
   
   root 'items#index'
 
-
-  # resources :users, only: [:edit, :update]
   resources :cards, only: [:new, :show, :create, :destroy] do
 
     resources :items do
@@ -18,7 +16,6 @@ Rails.application.routes.draw do
       #Ajaxで動くアクションのルートを作成
       collection do
         post 'pay', to: 'cards#pay'
-        # post 'purchase', to: 'items#purchase'
       end
     end
   end

@@ -6,21 +6,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def create
-    @user = User.new(sign_up_params)
-    unless @user.valid?
-      flash.now[:alert] = @user.errors.full_messages
+    @user = User.new(sign_up_params)##※deviseのデフォルトのパラムス(application_controllerで定義しているconfigure_permitted_parametersの事であるぞ）、デフォルト以外の入力させたい情報を空のインスタンスへ追加している。
+    unless @user.valid?##ユーザー新規登録（アドレス登録前）のバリデーションに掛からず、次のアドレス登録に遷移出来る状態か判別している。
+      flash.now[:alert] = @user.errors.full_messages##※valid?で@userに空の状態で元々あるerrorsメソッドへエラーメッセージの値を入れている。
       render :new and return
     end
-    session["devise.regist_data"] = {user: @user.attributes}
-    session["devise.regist_data"][:user]["password"] = params[:user][:password]
-    @address = @user.build_address
-
+    session["devise.regist_data"] = {user: @user.attributes}##attributesとは@user（インスタンス変数）をuser:とのキーバリューの関係にするメソッド
+    session["devise.regist_data"][:user]["password"] = params[:user][:password]##ここでbinding.pryで情報を確認してみよう！！パスワードをsessionに渡している。@userにはパスワードの情報がない、パスワードはデータベースに保存するものではないため、本来は弾かれてしまう。{session: {["devise.regist_data"]: @user}}こんな感じ
+    @address = @user.build_address## @user.address.newの形、@userは上で定義した情報（パスワードはない）が入っている、addressというからの入れ物をくっつけて（アドレス情報入力用）@addressのインスタンス変数に渡している。
     render :new_address
   end
   
 
   def create_address
-    @user = User.new(session["devise.regist_data"]["user"])
+    @user = User.new(session["devise.regist_data"]["user"])## 画面が遷移してもデータを引き継げる様にしている。
     @address = Address.new(address_params)
     unless @address.valid?
       flash.now[:alert] = @address.errors.full_messages
@@ -30,7 +29,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user.save
     session["devise.regist_data"]["user"].clear
     sign_in(:user, @user)
-    redirect_to root_path, notice: 'ログインしました'
+    redirect_to root_path, notice: 'ログインしました'##各行でbinding.pryやコメントアウトなどをしてみよう！
   end
 
   protected

@@ -1,5 +1,3 @@
-// topcss
-
 *{
   box-sizing: border-box;
 }
@@ -38,7 +36,6 @@ a{
       &__search-box{
         margin-left: auto;
         width: 100%;
-        // display: flex;
         form{
           width: 100%;
           margin-bottom: 5px;
@@ -308,7 +305,6 @@ background-color: #fff;
     margin: 0 auto;
     display: flex;
     flex-wrap: nowrap;
-    // padding-left:100px;
 
     &__item{
       display: flex;
